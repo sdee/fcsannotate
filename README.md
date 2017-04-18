@@ -15,9 +15,11 @@ To run server with the endpoint:
 
 python fcsannotate/fcsannotate.py
 
-PUT /fcs_data/annotate/ [binary FCS file]
+PUT http://localhost/fcs_data/annotate/ [binary FCS file]
 
-The enpoint returns a labeled FCS as binary in the response body.
+If successful, the endpoint returns a response with a status 200 and a labeled FCS file as a binary in the response body.
+
+Otherwise, it returns a 404 (file missing in request) or 500 status code (most likely, due to error with FCS format).
 
 ~~~~
 
@@ -25,11 +27,11 @@ The enpoint returns a labeled FCS as binary in the response body.
 
 ~~~~
 
-Unit tests on annotation of FCS files:
+Unit tests for annotating FCS files:
 
-python fcsannotate/tests/test_annotate.py
+**python fcsannotate/tests/test_annotate.py**
 
-Integration tests of annotation endpoint:
+**Integration tests of annotation endpoint:**
 
 python fcsannotate/tests/test_annotate_endpoint.py
 
@@ -37,7 +39,7 @@ python fcsannotate/tests/test_annotate_endpoint.py
 
 ## Dependencies
 
-This package relies on Flask and was tested with Python: 2.7.1 (there were issues with fcsparser at Python 3.6.1 and Anaconda).
+This package relies on Flask ('0.10.1) and was tested with Python: 2.7.1 (there were issues with fcsparser at Python 3.6.1 and Anaconda).
 
 The package also uses a fork of fcsparser from https://github.com/NotableLabs/fcsparser (uses the write_file functionality).  
 
