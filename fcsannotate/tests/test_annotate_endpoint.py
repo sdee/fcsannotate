@@ -12,12 +12,13 @@ class TestAnnotateEndpoint(unittest.TestCase):
 	TEST_DATA_DIR = os.path.join(TEST_DIR, 'data')
 	TEST_FCS_FILE = os.path.join(TEST_DATA_DIR, 'Well_A01.fcs')
 	TEST_CORRUPTED_FILE = os.path.join(TEST_DATA_DIR, 'corrupted.fcs')
+	TEST_ENDPOINT_URI = 'http://localhost/fcs_data/annotate/'
 
 	def test_annotation_endpoint(self):
 		with open(self.TEST_FCS_FILE, 'rb') as fcs:
 			fcsStringIO = StringIO.StringIO(fcs.read())
 		with app.test_client() as c:
-			resp = c.put('http://localhost/fcs_data/annotate/',
+			resp = c.put(self.TEST_ENDPOINT_URI,
 				input_stream=fcsStringIO,
 				headers={'Content-Type': 'application/octet-stream'})
 			self.assertEqual(resp.status_code, 200)
@@ -35,7 +36,7 @@ class TestAnnotateEndpoint(unittest.TestCase):
 
 	def test_no_file(self):
 		with app.test_client() as c:
-			resp = c.put('http://localhost/fcs_data/annotate/',
+			resp = c.put(self.TEST_ENDPOINT_URI,
 				headers={'Content-Type': 'application/octet-stream'})
 			self.assertEqual(resp.status_code, 404)
 
@@ -43,7 +44,7 @@ class TestAnnotateEndpoint(unittest.TestCase):
 		with open(self.TEST_CORRUPTED_FILE, 'rb') as fcs:
 			fcsStringIO = StringIO.StringIO(fcs.read())
 		with app.test_client() as c:
-			resp = c.put('http://localhost/fcs_data/annotate/',
+			resp = c.put(self.TEST_ENDPOINT_URI,
 				input_stream=fcsStringIO,
 				headers={'Content-Type': 'application/octet-stream'})
 			self.assertEqual(resp.status_code, 500)
