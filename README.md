@@ -29,9 +29,9 @@ Otherwise, it returns a 404 (file missing in request) or 500 status code (most l
 
 Unit tests for annotating FCS files:
 
-**python fcsannotate/tests/test_annotate.py**
+python fcsannotate/tests/test_annotate.py
 
-**Integration tests of annotation endpoint:**
+Integration tests of annotation endpoint:
 
 python fcsannotate/tests/test_annotate_endpoint.py
 
