@@ -45,7 +45,7 @@ This package relies on Flask ('0.10.1) and was tested with Python: 2.7.1 (there 
 
 The package also uses the fork of fcsparser from https://github.com/NotableLabs/fcsparser (uses the write_file functionality).  
 
-I had to adjust a couple of imports in fcs_parser/__init__.py to make it work for me locally:
+I had to adjust a couple of imports in `fcs_parser/__init__.py` to make it work for me locally:
 
 ~~~~
 from ._version import version as __version__
