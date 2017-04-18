@@ -21,7 +21,7 @@ class TestAnnotate(unittest.TestCase):
 		day = '{:%d-%b-%Y}'.format(datetime.now()).upper()
 		self.assertTrue(day in annotations['labeled_at']) #only checks day portion of timestamp
 
-	#test annotating FCS file with custom experimental field.
+	#test annotating FCS file with custom experimental fields.
 	def test_custom_annotate(self):
 		outfile = annotate_file(self.TEST_FCS_FILE, 'iQue_1', expdata1='d1', expdata2='d2')
 		fp2 = FCSParser(outfile)
