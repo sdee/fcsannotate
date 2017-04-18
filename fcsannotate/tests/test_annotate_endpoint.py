@@ -7,8 +7,14 @@ from fcsannotate.utils import create_temporary_copy
 #integration test for Annotate endpoint
 class TestAnnotateEndpoint(unittest.TestCase):
 
+	#Repeats paths in TestAnnotate but erring on the side of being explicit about what the fixtures are
+	TEST_DIR = os.path.abspath(os.path.dirname(__file__))
+	TEST_DATA_DIR = os.path.join(TEST_DIR, 'data')
+	TEST_FCS_FILE = os.path.join(TEST_DATA_DIR, 'Well_A01.fcs')
+	TEST_CORRUPTED_FILE = os.path.join(TEST_DATA_DIR, 'corrupted.fcs')
+
 	def test_annotation_endpoint(self):
-		with open('./fcsannotate/tests/data/Well_A01.fcs', 'rb') as fcs:
+		with open(self.TEST_FCS_FILE, 'rb') as fcs:
 			fcsStringIO = StringIO.StringIO(fcs.read())
 		with app.test_client() as c:
 			resp = c.put('http://localhost/fcs_data/annotate/',
@@ -34,7 +40,7 @@ class TestAnnotateEndpoint(unittest.TestCase):
 			self.assertEqual(resp.status_code, 404)
 
 	def test_corrupted_file(self):
-		with open('./fcsannotate/tests/data/corrupted.fcs', 'rb') as fcs:
+		with open(self.TEST_CORRUPTED_FILE, 'rb') as fcs:
 			fcsStringIO = StringIO.StringIO(fcs.read())
 		with app.test_client() as c:
 			resp = c.put('http://localhost/fcs_data/annotate/',
