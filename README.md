@@ -17,9 +17,11 @@ python fcsannotate/fcsannotate.py
 
 PUT http://localhost/fcs_data/annotate/ [binary FCS file]
 
-If successful, the endpoint returns a response with a status 200 and a labeled FCS file as a binary in the response body.
+If successful, the endpoint returns a response with a status 200 and a labeled FCS file as a binary 
+in the response body.
 
-Otherwise, it returns a 404 (file missing in request) or 500 status code (most likely, due to error with FCS format).
+Otherwise, it returns a 404 (file missing in request) or 500 status code (most likely, due to error 
+with FCS format).
 
 ~~~~
 
