@@ -39,7 +39,15 @@ python fcsannotate/tests/test_annotate_endpoint.py
 
 This package relies on Flask and was tested with Python: 2.7.1 (there were issues with fcsparser at Python 3.6.1 and Anaconda).
 
-The package also uses a fork of fcsparser from https://github.com/NotableLabs/fcsparser (uses the write_file functionality). The repo is included as the fcsparser directory because I had to adjust a couple of imports in fcs_parser/__init__.py.
+The package also uses a fork of fcsparser from https://github.com/NotableLabs/fcsparser (uses the write_file functionality).  
+
+I had to adjust a couple of imports in fcs_parser/__init__.py to make it work for me locally:
+
+~~~~
+from ._version import version as __version__
+from .api import parse
+~~~~
+
 ## Contact
 
 Please email me at sutee.dee@alumni.olin.edu with any questions.
